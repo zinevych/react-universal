@@ -20,8 +20,6 @@ class Post extends React.Component {
             <p className="form-control-static">{this.props.post.item.id}</p>
           </div>
         </div>
-
-
       </div>
     );
   }

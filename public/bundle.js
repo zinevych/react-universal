@@ -62,17 +62,16 @@
 	
 	var _reactRedux = __webpack_require__(226);
 	
-	var _reducers = __webpack_require__(258);
+	var _reducers = __webpack_require__(257);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
-	var _reduxThunk = __webpack_require__(262);
+	var _reduxThunk = __webpack_require__(261);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// Grab the state from a global injected into server-generated HTML
 	var initialState = window.__INITIAL_STATE__;
 	
 	var store = (0, _redux.createStore)(_reducers2.default, initialState, (0, _redux.applyMiddleware)(_reduxThunk2.default));
@@ -19750,27 +19749,23 @@
 	
 	var _Welcome2 = _interopRequireDefault(_Welcome);
 	
-	var _dashboardContainer = __webpack_require__(220);
+	var _Dashboard = __webpack_require__(221);
 	
-	var _dashboardContainer2 = _interopRequireDefault(_dashboardContainer);
+	var _Dashboard2 = _interopRequireDefault(_Dashboard);
 	
-	var _About = __webpack_require__(252);
+	var _About = __webpack_require__(251);
 	
 	var _About2 = _interopRequireDefault(_About);
 	
-	var _Login = __webpack_require__(253);
-	
-	var _Login2 = _interopRequireDefault(_Login);
-	
-	var _Posts = __webpack_require__(254);
+	var _Posts = __webpack_require__(253);
 	
 	var _Posts2 = _interopRequireDefault(_Posts);
 	
-	var _postContainer = __webpack_require__(255);
+	var _postContainer = __webpack_require__(254);
 	
 	var _postContainer2 = _interopRequireDefault(_postContainer);
 	
-	var _Post = __webpack_require__(256);
+	var _Post = __webpack_require__(255);
 	
 	var _Post2 = _interopRequireDefault(_Post);
 	
@@ -19790,7 +19785,7 @@
 	  _react2.default.createElement(
 	    _reactRouter.Route,
 	    { path: '/', component: _App2.default },
-	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _dashboardContainer2.default }),
+	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _Dashboard2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { name: 'about', path: '/about', component: _About2.default }),
 	    _react2.default.createElement(
 	      _reactRouter.Route,
@@ -25281,45 +25276,7 @@
 	;
 
 /***/ },
-/* 220 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _Dashboard = __webpack_require__(221);
-	
-	var _Dashboard2 = _interopRequireDefault(_Dashboard);
-	
-	var _reactRedux = __webpack_require__(226);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    //items: state.items
-	  };
-	};
-	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
-	    onClick: function onClick(id) {
-	      dispatch({
-	        type: 'CLICKED_ACTION',
-	        id: id
-	      });
-	    }
-	  };
-	};
-	
-	var VisibleDashboard = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Dashboard2.default);
-	
-	exports.default = VisibleDashboard;
-
-/***/ },
+/* 220 */,
 /* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -25337,25 +25294,19 @@
 	
 	var _staticContentContainer2 = _interopRequireDefault(_staticContentContainer);
 	
-	var _remoteContentContainer = __webpack_require__(247);
+	var _remoteContentContainer = __webpack_require__(246);
 	
 	var _remoteContentContainer2 = _interopRequireDefault(_remoteContentContainer);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Dashboard = function Dashboard(_ref) {
-	  var items = _ref.items;
-	  var onTodoClick = _ref.onTodoClick;
+	var Dashboard = function Dashboard() {
 	  return _react2.default.createElement(
 	    'div',
 	    null,
 	    _react2.default.createElement(_staticContentContainer2.default, null),
 	    _react2.default.createElement(_remoteContentContainer2.default, null)
 	  );
-	};
-	
-	Dashboard.propTypes = {
-	  onClick: _react.PropTypes.func.isRequired
 	};
 	
 	exports.default = Dashboard;
@@ -25724,7 +25675,7 @@
 	
 	var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 	
-	var _invariant = __webpack_require__(246);
+	var _invariant = __webpack_require__(166);
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
@@ -27003,73 +26954,19 @@
 /* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 */
-	
-	'use strict';
-	
-	/**
-	 * Use invariant() to assert state which your program assumes to be true.
-	 *
-	 * Provide sprintf-style format (only %s is supported) and arguments
-	 * to provide information about what broke and what you were
-	 * expecting.
-	 *
-	 * The invariant message will be stripped in production, but the invariant
-	 * will remain to ensure logic does not differ in production.
-	 */
-	
-	var invariant = function invariant(condition, format, a, b, c, d, e, f) {
-	  if (process.env.NODE_ENV !== 'production') {
-	    if (format === undefined) {
-	      throw new Error('invariant requires an error message argument');
-	    }
-	  }
-	
-	  if (!condition) {
-	    var error;
-	    if (format === undefined) {
-	      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
-	    } else {
-	      var args = [a, b, c, d, e, f];
-	      var argIndex = 0;
-	      error = new Error(format.replace(/%s/g, function () {
-	        return args[argIndex++];
-	      }));
-	      error.name = 'Invariant Violation';
-	    }
-	
-	    error.framesToPop = 1; // we don't care about invariant's own frame
-	    throw error;
-	  }
-	};
-	
-	module.exports = invariant;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
-
-/***/ },
-/* 247 */
-/***/ function(module, exports, __webpack_require__) {
-
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	
-	var _RemoteContent = __webpack_require__(248);
+	var _RemoteContent = __webpack_require__(247);
 	
 	var _RemoteContent2 = _interopRequireDefault(_RemoteContent);
 	
 	var _reactRedux = __webpack_require__(226);
 	
-	var _remoteItems = __webpack_require__(249);
+	var _remoteItems = __webpack_require__(248);
 	
 	var fetchRemoteItems = _interopRequireWildcard(_remoteItems);
 	
@@ -27097,7 +26994,7 @@
 	exports.default = remoteContentContainer;
 
 /***/ },
-/* 248 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27206,7 +27103,7 @@
 	exports.default = RemoteContent;
 
 /***/ },
-/* 249 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27217,7 +27114,7 @@
 	exports.RECEIVE_DATA = exports.REQUEST_DATA = undefined;
 	exports.fetchRemoteItems = fetchRemoteItems;
 	
-	var _isomorphicFetch = __webpack_require__(250);
+	var _isomorphicFetch = __webpack_require__(249);
 	
 	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 	
@@ -27251,7 +27148,7 @@
 	}
 
 /***/ },
-/* 250 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27260,11 +27157,11 @@
 	// on the global object (window or self)
 	//
 	// Return that as the export for use in Webpack, Browserify etc.
-	__webpack_require__(251);
+	__webpack_require__(250);
 	module.exports = self.fetch.bind(self);
 
 /***/ },
-/* 251 */
+/* 250 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -27658,7 +27555,7 @@
 	})(typeof self !== 'undefined' ? self : undefined);
 
 /***/ },
-/* 252 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27684,16 +27581,8 @@
 	exports.default = About;
 
 /***/ },
+/* 252 */,
 /* 253 */
-/***/ function(module, exports) {
-
-	/**
-	 * Created by ozinevych on 3/15/16.
-	 */
-	"use strict";
-
-/***/ },
-/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27748,7 +27637,7 @@
 	;
 
 /***/ },
-/* 255 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27759,7 +27648,7 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _Post = __webpack_require__(256);
+	var _Post = __webpack_require__(255);
 	
 	var _Post2 = _interopRequireDefault(_Post);
 	
@@ -27769,7 +27658,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _remoteItem = __webpack_require__(257);
+	var _remoteItem = __webpack_require__(256);
 	
 	var remoteItemActionHandler = _interopRequireWildcard(_remoteItem);
 	
@@ -27787,9 +27676,7 @@
 	
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
-	    //remoteItems: state.remoteItems,
 	    selectedRemoteItem: state.selectedRemoteItem
-	    //selectedRemoteItemComments: state.selectedRemoteItemComments
 	  };
 	};
 	
@@ -27846,7 +27733,7 @@
 	exports.default = Connector;
 
 /***/ },
-/* 256 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27936,7 +27823,7 @@
 	exports.default = Post;
 
 /***/ },
-/* 257 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27947,7 +27834,7 @@
 	exports.RECEIVE_POST = exports.REQUEST_POST = undefined;
 	exports.fetchRemoteItem = fetchRemoteItem;
 	
-	var _isomorphicFetch = __webpack_require__(250);
+	var _isomorphicFetch = __webpack_require__(249);
 	
 	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 	
@@ -27980,7 +27867,7 @@
 	}
 
 /***/ },
-/* 258 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27991,15 +27878,15 @@
 	
 	var _redux = __webpack_require__(232);
 	
-	var _staticItems = __webpack_require__(259);
+	var _staticItems = __webpack_require__(258);
 	
 	var _staticItems2 = _interopRequireDefault(_staticItems);
 	
-	var _remoteItems = __webpack_require__(260);
+	var _remoteItems = __webpack_require__(259);
 	
 	var _remoteItems2 = _interopRequireDefault(_remoteItems);
 	
-	var _selectedRemoteItem = __webpack_require__(261);
+	var _selectedRemoteItem = __webpack_require__(260);
 	
 	var _selectedRemoteItem2 = _interopRequireDefault(_selectedRemoteItem);
 	
@@ -28014,7 +27901,7 @@
 	exports.default = appReducer;
 
 /***/ },
-/* 259 */
+/* 258 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28044,7 +27931,7 @@
 	exports.default = staticItems;
 
 /***/ },
-/* 260 */
+/* 259 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28078,7 +27965,7 @@
 	exports.default = remoteItems;
 
 /***/ },
-/* 261 */
+/* 260 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28112,7 +27999,7 @@
 	exports.default = selectedRemoteItem;
 
 /***/ },
-/* 262 */
+/* 261 */
 /***/ function(module, exports) {
 
 	'use strict';

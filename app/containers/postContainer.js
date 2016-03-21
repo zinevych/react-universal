@@ -6,9 +6,7 @@ import { bindActionCreators } from 'redux';
 
 const mapStateToProps = (state) => {
   return {
-    //remoteItems: state.remoteItems,
     selectedRemoteItem: state.selectedRemoteItem
-    //selectedRemoteItemComments: state.selectedRemoteItemComments
   }
 };
 

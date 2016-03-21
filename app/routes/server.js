@@ -18,8 +18,6 @@ function fetchAll(store, renderProps) {
 
 module.exports = function(app) {
   app.get('/*', (req, res) => {
-    // Note that req.url here should be the full URL path from
-    // the original request, including the query string.
     match({
       routes,
       location: req.url
@@ -32,11 +30,6 @@ module.exports = function(app) {
       } else if (renderProps) {
 
         let store = createStore(appReducer, {
-          //items: [
-          //  {
-          //    text: 'test text'
-          //  }
-          //],
           staticItems: [
             {
               text: 'staticItem1'
@@ -77,9 +70,6 @@ module.exports = function(app) {
           console.log(response);
           response.status(500).send("Something went wrong");
         });
-        // You can also check renderProps.components or renderProps.routes for
-        // your "not found" component or route respectively, and send a 404 as
-        // below, if you're using a catch-all route.
       } else {
         res.status(404).send('Not found')
       }

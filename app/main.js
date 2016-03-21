@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import appReducer from './reducers';
 import thunk from 'redux-thunk';
 
-// Grab the state from a global injected into server-generated HTML
 const initialState = window.__INITIAL_STATE__;
 
 let store = createStore(appReducer, initialState, applyMiddleware(
